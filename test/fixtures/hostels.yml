@@ -2,12 +2,14 @@
 
 one:
   name: MyString
-  town: one
-  region: one
-  country: one
+  country: MyString
+  region: MyString
+  town: MyString
+  contact: MyString
 
 two:
   name: MyString
-  town: two
-  region: two
-  country: two
+  country: MyString
+  region: MyString
+  town: MyString
+  contact: MyString
