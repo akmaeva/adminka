@@ -1,0 +1,14 @@
+current directory: C:/Sites/tourbases/vendor/bundle/ruby/3.1.0/gems/nio4r-2.5.9/ext/nio4r
+C:/Ruby31-x64/bin/ruby.exe -I C:/Ruby31-x64/lib/ruby/3.1.0 extconf.rb
+
+current directory: C:/Sites/tourbases/vendor/bundle/ruby/3.1.0/gems/nio4r-2.5.9/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20230624-18980-y7agc sitelibdir\=./.gem.20230624-18980-y7agc clean
+make: *** Нет правила для сборки цели «clean».  Останов.
+
+current directory: C:/Sites/tourbases/vendor/bundle/ruby/3.1.0/gems/nio4r-2.5.9/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20230624-18980-y7agc sitelibdir\=./.gem.20230624-18980-y7agc
+make: Цель «all» не требует выполнения команд.
+
+current directory: C:/Sites/tourbases/vendor/bundle/ruby/3.1.0/gems/nio4r-2.5.9/ext/nio4r
+make DESTDIR\= sitearchdir\=./.gem.20230624-18980-y7agc sitelibdir\=./.gem.20230624-18980-y7agc install
+make: Цель «install» не требует выполнения команд.
