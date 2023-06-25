@@ -1,5 +1,24 @@
 class HostelsController < ApplicationController
   before_action :set_hostel, only: %i[ show edit update destroy ]
+  before_action :set_hostels
+
+  # Экшен для загрузки списка стран
+  def countries
+    @countries = Country.all
+    render json: @countries
+  end
+
+  # Экшен для загрузки списка регионов
+  def regions
+    @regions = Region.where(country_id: params[:country_id])
+    render json: @regions
+  end
+
+  # Экшен для загрузки списка городов
+  def towns
+    @towns = Town.where(region_id: params[:region_id])
+    render json: @towns
+  end
 
   # GET /hostels or /hostels.json
   def index
@@ -66,5 +85,11 @@ class HostelsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def hostel_params
       params.require(:hostel).permit(:name, :country, :region, :town, :contact)
+    end
+
+    def set_hostels
+      @country = Country.find_by(id: params[:country].presence)
+      @region = Country.find_by(id: params[:regions].presence)
+      @town = Country.find_by(id: params[:towns])
     end
 end
