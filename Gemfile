@@ -70,3 +70,12 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem 'cssbundling-rails'
+gem 'bootstrap', '~> 5.1.3'
+gem "sassc-rails"
+gem 'jquery-rails'
+gem 'barista'
+gem 'json'
+gem 'jquery-turbolinks'
+gem 'turbolinks'
