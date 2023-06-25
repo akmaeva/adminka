@@ -1,5 +1,17 @@
-<h1>New hostel</h1>
+<head>
 
+  <h1>New hostel</h1>
+  <script
+  src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
+  
+  
+</head>
+
+  <%= turbo_frame_tag "form" do %>
+  <% end %>
+  
 <%= render "form", hostel: @hostel %>
 
 <br>
@@ -7,3 +19,77 @@
 <div>
   <%= link_to "Back to hostels", hostels_path %>
 </div>
+
+<script>
+  $(document).ready(function() {
+  // Загружаем список стран при загрузке страницы
+    loadCountries();
+
+  // Обработчик изменения выбранной страны
+    $('#hostel_country_id').on('change', function(){
+      var country_id = $(this).val();
+      loadRegions(country_id).hide();
+    });
+
+  // Обработчик изменения выбранного региона
+    $('#hostel_region_id').on('change', function(){
+      var region_id = $(this).val();
+      loadTowns(region_id);
+    }).hide();
+
+  // Обработчик изменения выбранного города
+    $('#hostel_town_id').on('change', function(){
+      var town_id = $(this).val();
+    }).hide();
+  });
+
+// Загрузка списка стран
+  function loadCountries() {
+    $.ajax({
+      url: '/countries', // Путь к экшену, отвечающему за загрузку списка стран
+      dataType: 'json',
+      success: function(data) {
+      // Добавление стран в выпадающий список
+        var options = '<option value="">Выберите страну</option>';
+        data.forEach(function(country) {
+          options += '<option value="' + country.id + '">' + country.name + '</option>';
+        });
+        $('#hostel_country_id').html(options);
+      }
+    });
+  }
+
+// Загрузка списка регионов
+  function loadRegions(country_id) {
+    $.ajax({
+      url: '/regions', // Путь к экшену, отвечающему за загрузку списка регионов
+      dataType: 'json',
+      data: { country_id: country_id },
+      success: function(data) {
+      // Добавление регионов в выпадающий список
+        var options = '<option value="">Выберите регион</option>';
+        data.forEach(function(region) {
+          options += '<option value="' + region.id + '">' + region.name + '</option>';
+        });
+        $('#hostel_region_id').html(options).show();
+      }
+    });
+}
+
+// Загрузка списка городов
+  function loadTowns(region_id) {
+    $.ajax({
+      url: '/towns', // Путь к экшену, отвечающему за загрузку списка городов
+      dataType: 'json',
+      data: { region_id: region_id },
+      success: function(data) {
+      // Добавление городов в выпадающий список
+        var options = '<option value="">Выберите город</option>';
+        data.forEach(function(town) {
+          options += '<option value="' + town.id + '">' + town.name + '</option>';
+        });
+        $('#hostel_town_id').html(options).show();
+      }
+    });
+  }
+</script>
