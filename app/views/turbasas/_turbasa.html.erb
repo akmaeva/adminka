@@ -1,26 +1,26 @@
 <div id="<%= dom_id turbasa %>">
   <p>
-    <strong>Name:</strong>
+    <strong>Название:</strong>
     <%= turbasa.name %>
   </p>
 
   <p>
-    <strong>Country:</strong>
-    <%= turbasa.country_id %>
+    <strong>Страна:</strong>
+    <%= Country.find(turbasa.country_id).name %>
   </p>
 
   <p>
-    <strong>Region:</strong>
-    <%= turbasa.region_id %>
+    <strong>Регион:</strong>
+    <%= Region.find(turbasa.region_id).name %>
   </p>
 
   <p>
-    <strong>Town:</strong>
-    <%= turbasa.town_id %>
+    <strong>Город:</strong>
+    <%= Town.find(turbasa.town_id).name %>
   </p>
 
   <p>
-    <strong>Contact:</strong>
+    <strong>Контакты:</strong>
     <%= turbasa.contact %>
   </p>
 
