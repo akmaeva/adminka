@@ -6,102 +6,96 @@
   crossorigin="anonymous"></script>
 
   <script>
-      $(document).ready(function() {
-  // Загружаем список стран при загрузке страницы
-      loadCountries();
+    $(document).ready(function() {
 
-  // Обработчик изменения выбранной страны
-      $('#country-field').on('change', function(){
-        var countrySelect = $(this).val();
-        console.log(countrySelect);
-        if (countrySelect) {
-          loadRegions(countrySelect);
-        }
-        else {
-          $('#region-field').empty();
-        }
-      });
+    loadCountries();
 
-  // Обработчик изменения выбранного региона
-      $('#region-field').on('change', function(){
-        var regionSelect = $(this).val();
-        console.log(regionSelect);
-        if (regionSelect) {
-          loadTowns(regionSelect);
-        }
-        else {
-          $('#town-field').empty();
-        }
-      });
-      $('#town-field').on('change', function(){
-        var townSelect = $(this).val();
-        console.log(townSelect);
-      
-        });
-      });
-
-// Загрузка списка стран
-      function loadCountries() {
-        $.ajax({
-          url: '/countries', // Путь к экшену, отвечающему за загрузку списка стран
-          dataType: 'json',
-          success: function(data) {
-            $('#country-field').empty();
-            $('#country-field').append('<option value="">Выберите страну</option>');
-            $.each(data, function(index, country) {
-              $('#country-field').append('<option value="' + country.id + '">' + country.name + '</option>');
-            });
-          }
-        });
+    $('#turbasa_country_id').on('change', function(){
+      var countrySelect = $(this).val();
+      console.log(countrySelect);
+      if (countrySelect) {
+        loadRegions(countrySelect);
+        loadTowns(countrySelect);
       }
+      else {
+        $('#turbasa_region_id').empty();
+      }
+    });
 
-// Загрузка списка регионов
-      function loadRegions(country_id) {
-        $.ajax({
-          url: '/regions', // Путь к экшену, отвечающему за загрузку списка регионов
-          dataType: 'json',
-          data: { country_id: country_id },
-          success: function(data) {
-      // Добавление регионов в выпадающий список
-            $('#region-field').empty();
-            $('#region-field').append('<option value="">Выберите регион</option>');
-            $.each(data, function(index, region) {
-            $('#region-field').append('<option value="' + region.id + '">' + region.name + '</option>');
-            });
-          }
-        });
+    $('#turbasa_region_id').on('change', function(){
+      var regionSelect = $(this).val();
+      console.log(regionSelect);
+      if (regionSelect) {
+        loadTowns(regionSelect);
+      }
+      else {
+        $('#turbasa_town_id').empty();
+      }
+    });
+    $('#turbasa_town_id').on('change', function(){
+      var townSelect = $(this).val();
+      console.log(townSelect);
+      });
+    });
+
+    function loadCountries() {
+      $.ajax({
+        url: '/countries', 
+        dataType: 'json',
+        success: function(data) {
+          $('#turbasa_country_id').empty();
+          
+          $.each(data, function(index, country) {
+            $('#turbasa_country_id').append('<option value="' + country.id + '">' + country.name + '</option>');
+          });
+        }
+      });
     }
 
-// Загрузка списка городов
-      function loadTowns(region_id) {
-        $.ajax({
-          url: '/towns', // Путь к экшену, отвечающему за загрузку списка городов
-          dataType: 'json',
-          data: { region_id: region_id },
-          success: function(data) {
-      // Добавление городов в выпадающий список
-            $('#town-field').empty();
-            $('#town-field').append('<option value="">Выберите город</option>');
-            $.each(data, function(index, town) {
-              $('#town-field').append('<option value="' + town.id + '">' + town.name + '</option>');
-            });
+    function loadRegions(country_id) {
+      $.ajax({
+        url: '/regions', 
+        dataType: 'json',
+        data: { country_id: country_id },
+        success: function(data) {
+          $('#turbasa_region_id').empty();
+          $('#turbasa_region_id').append('<option value="">Выберите регион</option>');
+          $.each(data, function(index, region) {
+          $('#turbasa_region_id').append('<option value="' + region.id + '">' + region.name + '</option>');
+          });
+        }
+      });
+    }
+
+    function loadTowns(region_id) {
+      $.ajax({
+        url: '/towns', 
+        dataType: 'json',
+        data: { region_id: region_id },
+        success: function(data) {
+          $('#turbasa_town_id').empty();
+          if ($('#turbasa_town_id option').length === 0) {
+            $('#turbasa_town_id').append('<option value="">Выберите город</option>');
           }
-        });
-      }
+          $.each(data, function(index, town) {
+            $('#turbasa_town_id').append('<option value="' + town.id + '">' + town.name + '</option>');
+          });
+        }
+      });
+    }
 
-      $('#form').submit(function(e) {
-        e.preventDefault();
-        var countrySelect = $('#country-field').val();
-        var regionSelect = $('#region-field').val();
-        var townSelect = $('#town-field').val();
+    $('#form').submit(function(e) {
+      e.preventDefault();
+      var countrySelect = $('#turbasa_country_id').val();
+      var regionSelect = $('#turbasa_region_id').val();
+      var townSelect = $('#turbasa_town_id').val();
 
-    // Выполнить нужные действия с полученными данными, например, отправить на сервер
-        console.log('Страна:', countrySelect);
-        console.log('Регион:', regionSelect);
-        console.log('Город:', townSelect);
+      console.log('Страна:', countrySelect);
+      console.log('Регион:', regionSelect);
+      console.log('Город:', townSelect);
 
-        $.ajax({
-        url: '/turbasa/create', // Путь к действию Rails для сохранения
+      $.ajax({
+        url: '/turbasa/update', 
         type: 'POST',
         dataType: 'json',
         data: { country: countrySelect, region: regionSelect, town: townSelect },
@@ -110,11 +104,6 @@
         }
       });
     });
-
-    
-
-    // Отправьте выбранные значения на сервер для сохранения в базу данных
-    
   </script>
 </head>
 
