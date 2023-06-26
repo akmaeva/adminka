@@ -1,0 +1,42 @@
+<%= form_with(model: turbasa) do |form| %>
+  <% if turbasa.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(turbasa.errors.count, "error") %> prohibited this turbasa from being saved:</h2>
+
+      <ul>
+        <% turbasa.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :country_id, style: "display: block" %>
+    <%= form.collection_select :country_id, Country.order(:name), :id, :name, { include_blank: true }, { id: 'country-field' } %>
+  </div>
+
+  <div>
+    <%= form.label :region_id, style: "display: block" %>
+    <%= form.grouped_collection_select :region_id, Country.order(:name), :regions, :name, :id, :name, { include_blank: true }, { id: 'region-field' } %>
+  </div>
+
+  <div>
+    <%= form.label :town_id, style: "display: block" %>
+    <%= form.grouped_collection_select :town_id, Country.order(:name), :towns, :name, :id, :name, { include_blank: true }, { id: 'town-field' } %>
+  </div>
+
+  <div>
+    <%= form.label :contact, style: "display: block" %>
+    <%= form.text_field :contact %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

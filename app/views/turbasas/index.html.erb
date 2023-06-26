@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Turbasas</h1>
+
+<div id="turbasas">
+  <% @turbasas.each do |turbasa| %>
+    <%= render turbasa %>
+    <p>
+      <%= link_to "Show this turbasa", turbasa %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New turbasa", new_turbasa_path %>

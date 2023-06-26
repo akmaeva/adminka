@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @turbasa %>
+
+<div>
+  <%= link_to "Edit this turbasa", edit_turbasa_path(@turbasa) %> |
+  <%= link_to "Back to turbasas", turbasas_path %>
+
+  <%= button_to "Destroy this turbasa", @turbasa, method: :delete %>
+</div>

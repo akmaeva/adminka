@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :hostels 
+  resources :turbasas
   
   # Маршруты для экшенов загрузки списков
-  get '/countries', to: 'hostels#countries'
-  get '/regions', to: 'hostels#regions'
-  get '/towns', to: 'hostels#towns'
+  get '/countries', to: 'turbasas#countries'
+  get '/regions', to: 'turbasas#regions'
+  get '/towns', to: 'turbasas#towns'
 
   root 'home#index'
 end
