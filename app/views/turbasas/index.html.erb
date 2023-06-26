@@ -1,14 +1,24 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Turbasas</h1>
+<h1>Турбазы</h1>
 
-<div id="turbasas">
-  <% @turbasas.each do |turbasa| %>
-    <%= render turbasa %>
-    <p>
-      <%= link_to "Show this turbasa", turbasa %>
-    </p>
-  <% end %>
-</div>
+<table class="table tabel-bordered">
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Страна</th>
+      <th>Регион</th>
+      <th>Город</th>
+      <th>Контакты</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @turbasas.each do |turbasa| %>
+      <%= render "turbasa", turbasa: turbasa %>
+    <% end %>
+  </tbody>
+</table>
+
+
 
 <%= link_to "New turbasa", new_turbasa_path %>

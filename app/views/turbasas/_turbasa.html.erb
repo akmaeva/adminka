@@ -1,27 +1,12 @@
-<div id="<%= dom_id turbasa %>">
-  <p>
-    <strong>Название:</strong>
-    <%= turbasa.name %>
-  </p>
-
-  <p>
-    <strong>Страна:</strong>
-    <%= Country.find(turbasa.country_id).name %>
-  </p>
-
-  <p>
-    <strong>Регион:</strong>
-    <%= Region.find(turbasa.region_id).name %>
-  </p>
-
-  <p>
-    <strong>Город:</strong>
-    <%= Town.find(turbasa.town_id).name %>
-  </p>
-
-  <p>
-    <strong>Контакты:</strong>
-    <%= turbasa.contact %>
-  </p>
-
-</div>
+<tr id="turbasa_row_<%= turbasa.id %>">
+  <td><%= turbasa.name %></td>
+  <td><%= Country.find(turbasa.country_id).name %></td>
+  <td><%= Region.find(turbasa.region_id).name %></td>
+  <td><%= Town.find(turbasa.town_id).name %></td>
+  <td><%= turbasa.contact %></td>
+  <td>
+    <%= link_to "View", turbasa, class: "btn btn-info" %>
+    <%= link_to "Edit", edit_turbasa_path(turbasa), class: "btn btn-success" %>
+    <%= link_to "Delete", turbasa, method: :delete, data: {confirm: 'Вы уверены, что хотите удалить эту запись?'}, class: "btn btn-danger" %>
+  </td>
+</tr>
