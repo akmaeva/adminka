@@ -1,0 +1,7 @@
+<tr id="country_row_<%= country.id %>">
+  <td><%= country.name %></td>
+  <td>
+    <%= link_to "Edit", edit_country_path(country), class: "btn btn-success" %>
+    <%= link_to "Delete", country, method: :delete, data: {confirm: 'Вы уверены, что хотите удалить эту запись?'}, class: "btn btn-danger" %>
+  </td>
+</tr>

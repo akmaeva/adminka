@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Страны</h1>
+
+<table class="table tabel-bordered">
+  <thead>
+    <tr>
+      <th>Название</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @countries.each do |country| %>
+      <%= render "country", country: country %>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= link_to "Добавить страну", new_country_path %>
