@@ -4,7 +4,7 @@ class Turbasa < ApplicationRecord
   belongs_to :town
 
   validates :name, presence: true
-  validates :town, presence: true
-  validates :region, presence: true
-  validates :country, presence: true
+  validates :town_id, presence: true
+  validates :region_id, presence: true
+  validates :country_id, presence: true
 end
