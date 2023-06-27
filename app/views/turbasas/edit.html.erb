@@ -43,7 +43,10 @@
         url: '/countries', 
         dataType: 'json',
         success: function(data) {
-          $('#turbasa_country_id').empty();
+          var countrySelect = $(this).val();
+          if (countrySelect > 0) {
+             $('#turbasa_country_id').append('<option value="' + country.countrySelect + '">' + country.name + '</option>');
+          }
           
           $.each(data, function(index, country) {
             $('#turbasa_country_id').append('<option value="' + country.id + '">' + country.name + '</option>');
@@ -116,4 +119,5 @@
 <div>
   <%= link_to "Show this turbasa", @turbasa %> |
   <%= link_to "Back to turbasas", turbasas_path %>
+  
 </div>
