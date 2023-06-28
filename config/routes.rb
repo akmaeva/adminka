@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :turbasas 
   resources :countries
   resources :regions
+  resources :towns
 
   # Маршруты для экшенов загрузки списков
   get '/countries', to: 'turbasas#countries'
