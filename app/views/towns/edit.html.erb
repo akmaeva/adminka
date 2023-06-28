@@ -1,4 +1,78 @@
-<h1>Редактирование города</h1>
+<head>
+  <h1>Редактирование города</h1>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function() {
+
+    loadCountries();
+ 
+    $('#town_country_id').on('change', function(){
+      var countrySelect = $(this).val();
+      console.log(countrySelect);
+      if (countrySelect) {
+        loadRegions(countrySelect);
+      }
+      else {
+        $('#town_region_id').empty();
+      }
+    });
+
+    function loadCountries() {
+      $.ajax({
+        url: '/countrieslist', 
+        dataType: 'json',
+        success: function(data) {
+          $('#town_country_id').empty();
+          if ($('#town_country_id option').length === 0) {
+            $('#town_country_id').append('<option value="">Выберите страну</option>');
+          }
+          $.each(data, function(index, country) {
+            $('#town_country_id').append('<option value="' + country.id + '">' + country.name + '</option>');
+          });
+        }
+      });
+    }
+
+    function loadRegions(country_id) {
+      $.ajax({
+        url: '/regionslist', 
+        dataType: 'json',
+        data: { country_id: country_id },
+        success: function(data) {
+          $('#town_region_id').empty();
+          $('#town_region_id').append('<option value="">Выберите регион</option>');
+          $.each(data, function(index, region) {
+          $('#town_region_id').append('<option value="' + region.id + '">' + region.name + '</option>');
+          });
+        }
+      });
+    }
+
+    $('#form').submit(function(e) {
+      e.preventDefault();
+      var countrySelect = $('#town_country_id').val();
+      var regionSelect = $('#town_region_id').val();
+
+      console.log('Страна:', countrySelect);
+      console.log('Регион:', regionSelect);
+
+      $.ajax({
+        url: '/town/create', 
+        type: 'POST',
+        dataType: 'json',
+        data: { country: countrySelect, region: regionSelect },
+        success: function(response) {
+          alert('Значения сохранены!');
+        }
+      });
+    });
+    });
+  </script>
+</head>
 
 <%= render "form", town: @town %>
 
