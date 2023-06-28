@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   resources :turbasas 
-  resources :countries, only: %i[new create]
-  
+  resources :countries
+  resources :regions
 
   # Маршруты для экшенов загрузки списков
   get '/countries', to: 'turbasas#countries'
