@@ -1,0 +1,34 @@
+<%= form_with model: @town do |form| %>
+  <% if town.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(town.errors.count, "error") %> prohibited this town from being saved:</h2>
+
+      <ul>
+        <% town.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label "Название", class: "form-label mb-2 mt-3" %>
+    <%= form.text_field :name, class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Страна", class: "form-label mb-2 mt-3" %>
+    <%= form.collection_select :country_id, Country.order(:name), :id, :name, { prompt: "Выберите страну" }, class: "form-select form-select-lg" %>
+    <%= link_to "Добавить страну", new_country_path %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Регион", class: "form-label mb-2 mt-3" %>
+    <%= form.collection_select :region_id, Region.order(:name), :id, :name, { prompt: "Выберите регион" }, class: "form-select form-select-lg" %>
+    <%= link_to "Добавить регион", new_region_path %>
+  </div>
+
+  <div>
+    <%= form.submit "Добавить" %>
+  </div>
+<% end %>

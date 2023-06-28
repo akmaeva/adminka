@@ -1,0 +1,9 @@
+<tr id="town_row_<%= town.id %>">
+  <td><%= town.name %></td>
+  <td><%= Country.find(town.country_id).name %></td>
+  <td><%= Region.find(town.region_id).name %></td>
+  <td>
+    <%= link_to "Edit", edit_town_path(town), class: "btn btn-success" %>
+    <%= link_to "Delete", town, method: :delete, data: {confirm: 'Вы уверены, что хотите удалить эту запись?'}, class: "btn btn-danger" %>
+  </td>
+</tr>

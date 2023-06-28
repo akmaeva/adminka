@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Города</h1>
+
+<table class="table tabel-bordered">
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Страна</th>
+      <th>Регион</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @towns.each do |town| %>
+      <%= render "town", town: town %>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= link_to "Добавить город", new_town_path %>
