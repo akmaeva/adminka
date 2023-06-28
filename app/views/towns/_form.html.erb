@@ -19,16 +19,16 @@
   <div class="form-group">
     <%= form.label "Страна", class: "form-label mb-2 mt-3" %>
     <%= form.collection_select :country_id, Country.order(:name), :id, :name, { prompt: "Выберите страну" }, class: "form-select form-select-lg" %>
-    <%= link_to "Добавить страну", new_country_path %>
+    <%= link_to "Добавить", new_country_path %>
   </div>
 
   <div class="form-group">
     <%= form.label "Регион", class: "form-label mb-2 mt-3" %>
     <%= form.collection_select :region_id, Region.order(:name), :id, :name, { prompt: "Выберите регион" }, class: "form-select form-select-lg" %>
-    <%= link_to "Добавить регион", new_region_path %>
+    <%= link_to "Добавить", new_region_path %>
   </div>
 
   <div>
-    <%= form.submit "Добавить" %>
+    <%= form.submit "Сохранить", class: "btn btn-primary" %>
   </div>
 <% end %>

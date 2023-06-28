@@ -12,34 +12,34 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :name, class: "form-label mb-2 mt-3" %>
+    <%= form.label "Название", class: "form-label mb-2 mt-3" %>
     <%= form.text_field :name, class: "form-control form-control-lg" %>
   </div>
 
   <div class="form-group">
-    <%= form.label :country_id, class: "form-label mb-2 mt-3" %>
+    <%= form.label "Страна", class: "form-label mb-2 mt-3" %>
     <%= form.collection_select :country_id, Country.order(:name), :id, :name, { prompt: "Выберите страну" }, class: "form-select form-select-lg" %>
-    <%= link_to "Добавить страну", new_country_path %>
+    
   </div>
 
   <div class="form-group">
-    <%= form.label :region_id, class: "form-label mb-2 mt-3" %>
+    <%= form.label "Регион", class: "form-label mb-2 mt-3" %>
     <%= form.collection_select :region_id, Region.order(:name), :id, :name, { prompt: "Выберите регион" }, class: "form-select form-select-lg" %>
-    <%= link_to "Добавить регион", new_region_path %>
+    
   </div>
 
   <div class="form-group">
-    <%= form.label :town_id, class: "form-label mb-2 mt-3" %>
+    <%= form.label "Город", class: "form-label mb-2 mt-3" %>
     <%= form.collection_select :town_id, Town.order(:name), :id, :name, { prompt: "Выберите город" }, class: "form-select form-select-lg" %>
-    <%= link_to "Добавить город", new_town_path %>
+    
   </div>
 
   <div class="form-group">
-    <%= form.label :contact, class: "form-label mb-2 mt-3" %>
+    <%= form.label "Контакты", class: "form-label mb-2 mt-3" %>
     <%= form.text_field :contact, class: "form-control form-control-lg" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Сохранить", class: "btn btn-primary" %>
   </div>
 <% end %>
