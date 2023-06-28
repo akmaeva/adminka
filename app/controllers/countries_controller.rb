@@ -1,4 +1,5 @@
 class CountriesController < ApplicationController
+    before_action :set_country, only: %i[ show edit update destroy ]
 
     def index
         @countries = Country.all
@@ -56,8 +57,11 @@ class CountriesController < ApplicationController
     end
 
     private
+    def set_country
+        @country = Country.find(params[:id])
+    end
 
     def country_params
         params.require(:country).permit(:name)
-      end
+    end
 end

@@ -1,4 +1,6 @@
 class RegionsController < ApplicationController
+    before_action :set_region, only: %i[ show edit update destroy ]
+
     def index
         @regions = Region.all
     end
@@ -21,7 +23,7 @@ class RegionsController < ApplicationController
                 format.html { redirect_to regions_url, notice: "Region already exists." }
                 format.json { render json: { error: "Region already exists." }, status: :unprocessable_entity }
             elsif @region.save
-                format.html { redirect_to country_url(@region), notice: "Region was successfully created." }
+                format.html { redirect_to town_url(@region), notice: "Region was successfully created." }
                 format.json { render :show, status: :created, location: @region }
             else
                 format.html { render :new, status: :unprocessable_entity }
@@ -56,7 +58,11 @@ class RegionsController < ApplicationController
 
     private
 
+    def set_region
+        @region = Region.find(params[:id])
+    end
+
     def region_params
         params.require(:region).permit(:name, :country_id)
-      end
+    end
 end
