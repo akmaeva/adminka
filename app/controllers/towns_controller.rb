@@ -1,12 +1,22 @@
 class TownsController < ApplicationController
     before_action :set_town, only: %i[ show edit update destroy ]
 
+  def countrieslist
+    @countries = Country.all
+    render json: @countries
+  end
+
+  def regionslist
+    @regions = Region.where(country_id: params[:country_id])
+    render json: @regions
+  end
+
     def index
         @towns = Town.all
     end
 
     def new
-        @towns = Town.new
+        @town = Town.new
     end
 
     def edit

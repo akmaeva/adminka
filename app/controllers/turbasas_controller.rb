@@ -2,19 +2,19 @@ class TurbasasController < ApplicationController
   before_action :set_turbasa, only: %i[ show edit update destroy ]
 
   # Экшен для загрузки списка стран
-  def countries
+  def countrieslist
     @countries = Country.all
     render json: @countries
   end
 
   # Экшен для загрузки списка регионов
-  def regions
+  def regionslist
     @regions = Region.where(country_id: params[:country_id])
     render json: @regions
   end
 
   # Экшен для загрузки списка городов
-  def towns
+  def townslist
     @towns = Town.where(region_id: params[:region_id])
     render json: @towns
   end
