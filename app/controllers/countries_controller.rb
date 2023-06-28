@@ -58,7 +58,7 @@ class CountriesController < ApplicationController
 
     private
     def set_country
-        @country = Country.find(params[:id])
+        @country = Country.find params[:id]
     end
 
     def country_params

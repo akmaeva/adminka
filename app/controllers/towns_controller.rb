@@ -58,7 +58,7 @@ class TownsController < ApplicationController
 
     private
     def set_town
-        @town = Town.find(params[:id])
+        @town = Town.find params[:id]
     end
 
     def town_params
