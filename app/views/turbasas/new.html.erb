@@ -1,5 +1,5 @@
 <head>
-  <h1>New turbasa</h1>
+  <h1>Новая турбаза</h1>
 
   <script src="https://code.jquery.com/jquery-3.7.0.js"
   integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
@@ -15,10 +15,11 @@
       console.log(countrySelect);
       if (countrySelect) {
         loadRegions(countrySelect);
-        loadTowns(countrySelect);
+        loadTowns2(countrySelect);
       }
       else {
         $('#turbasa_region_id').empty();
+        $('#turbasa_town_id').empty();
       }
     });
 
@@ -26,12 +27,13 @@
       var regionSelect = $(this).val();
       console.log(regionSelect);
       if (regionSelect) {
-        loadTowns(regionSelect);
+        loadTowns1(regionSelect);
       }
       else {
         $('#turbasa_town_id').empty();
       }
     });
+    
     $('#turbasa_town_id').on('change', function(){
       var townSelect = $(this).val();
       console.log(townSelect);
@@ -41,13 +43,13 @@
 
     function loadCountries() {
       $.ajax({
-        url: '/countries', 
+        url: '/countrieslist', 
         dataType: 'json',
         success: function(data) {
           $('#turbasa_country_id').empty();
-          if ($('#turbasa_country_id option').length === 0) {
-            $('#turbasa_country_id').append('<option value="">Выберите страну</option>');
-          }
+          
+          $('#turbasa_country_id').append('<option value="">Выберите страну</option>');
+          
           $.each(data, function(index, country) {
             $('#turbasa_country_id').append('<option value="' + country.id + '">' + country.name + '</option>');
           });
@@ -57,7 +59,7 @@
 
     function loadRegions(country_id) {
       $.ajax({
-        url: '/regions', 
+        url: '/regionslist', 
         dataType: 'json',
         data: { country_id: country_id },
         success: function(data) {
@@ -70,11 +72,28 @@
       });
     }
 
-    function loadTowns(region_id) {
+    function loadTowns1(region_id) {
       $.ajax({
-        url: '/towns', 
+        url: '/townslist', 
         dataType: 'json',
         data: { region_id: region_id },
+        success: function(data) {
+          $('#turbasa_town_id').empty();
+          if ($('#turbasa_town_id option').length === 0) {
+            $('#turbasa_town_id').append('<option value="">Выберите город</option>');
+          }
+          $.each(data, function(index, town) {
+            $('#turbasa_town_id').append('<option value="' + town.id + '">' + town.name + '</option>');
+          });
+        }
+      });
+    }
+
+    function loadTowns2(country_id) {
+      $.ajax({
+        url: '/townslist', 
+        dataType: 'json',
+        data: { country_id: country_id },
         success: function(data) {
           $('#turbasa_town_id').empty();
           if ($('#turbasa_town_id option').length === 0) {
@@ -110,12 +129,10 @@
   </script>
 </head>
 
-
-
 <%= render "form", turbasa: @turbasa %>
 
 <br>
 
 <div>
-  <%= link_to "Back to turbasas", turbasas_path %>
+  <%= link_to "Назад", turbasas_path %>
 </div>

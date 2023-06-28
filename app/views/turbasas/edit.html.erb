@@ -15,7 +15,7 @@
       console.log(countrySelect);
       if (countrySelect) {
         loadRegions(countrySelect);
-        loadTowns(countrySelect);
+        loadTowns2(countrySelect);
       }
       else {
         $('#turbasa_region_id').empty();
@@ -26,12 +26,13 @@
       var regionSelect = $(this).val();
       console.log(regionSelect);
       if (regionSelect) {
-        loadTowns(regionSelect);
+        loadTowns1(regionSelect);
       }
       else {
         $('#turbasa_town_id').empty();
       }
     });
+    
     $('#turbasa_town_id').on('change', function(){
       var townSelect = $(this).val();
       console.log(townSelect);
@@ -40,7 +41,7 @@
 
     function loadCountries() {
       $.ajax({
-        url: '/countries', 
+        url: '/countrieslist', 
         dataType: 'json',
         success: function(data) {
           var countrySelect = $(this).val();
@@ -57,7 +58,7 @@
 
     function loadRegions(country_id) {
       $.ajax({
-        url: '/regions', 
+        url: '/regionslist', 
         dataType: 'json',
         data: { country_id: country_id },
         success: function(data) {
@@ -70,11 +71,28 @@
       });
     }
 
-    function loadTowns(region_id) {
+    function loadTowns1(region_id) {
       $.ajax({
-        url: '/towns', 
+        url: '/townslist', 
         dataType: 'json',
         data: { region_id: region_id },
+        success: function(data) {
+          $('#turbasa_town_id').empty();
+          if ($('#turbasa_town_id option').length === 0) {
+            $('#turbasa_town_id').append('<option value="">Выберите город</option>');
+          }
+          $.each(data, function(index, town) {
+            $('#turbasa_town_id').append('<option value="' + town.id + '">' + town.name + '</option>');
+          });
+        }
+      });
+    }
+
+    function loadTowns2(country_id) {
+      $.ajax({
+        url: '/townslist', 
+        dataType: 'json',
+        data: { country_id: country_id },
         success: function(data) {
           $('#turbasa_town_id').empty();
           if ($('#turbasa_town_id option').length === 0) {
