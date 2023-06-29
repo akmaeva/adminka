@@ -1,6 +1,12 @@
+<% provide :page_title, "Турбазы" %>
+
 <p style="color: green"><%= notice %></p>
 
 <h1>Турбазы</h1>
+
+<div data-controller="hello">
+  <h1 data-target="hello.output"></h1>
+</div>
 
 <div class="container">
   <div class="row">
@@ -17,7 +23,7 @@
 
     
   </div>
-  </div>
+</div>
 
 <table class="table tabel-bordered">
   <thead>
@@ -32,6 +38,7 @@
   <tbody>
 
     <%
+
     @turbasas = Turbasa.includes(:region).order('regions.name ASC', 'turbasas.name ASC')
     if params[:region].present? && params[:region] != "All Regions"
       @turbasas = @turbasas.where(regions: { id: params[:region] })
