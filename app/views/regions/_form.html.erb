@@ -1,15 +1,6 @@
-<%= form_with model: @region do |form| %>
-  <% if region.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(region.errors.count, "error") %> prohibited this region from being saved:</h2>
+<%= render 'shared/errors', object: @region %>
 
-      <ul>
-        <% region.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with model: @region do |form| %>
 
   <div class="form-group">
     <%= form.label "Название", class: "form-label mb-2 mt-3" %>

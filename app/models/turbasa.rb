@@ -7,4 +7,5 @@ class Turbasa < ApplicationRecord
   validates :town_id, presence: true
   validates :region_id, presence: true
   validates :country_id, presence: true
+  validates :contact, presence: true
 end
