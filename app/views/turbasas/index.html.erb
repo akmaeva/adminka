@@ -2,6 +2,23 @@
 
 <h1>Турбазы</h1>
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9">
+      <%= link_to "Добавить запись", new_turbasa_path, data: {controller: 'turbasa-modal'}, class: "btn btn-primary" %>
+    </div>
+
+    <div class="col-sm">
+      <% regions = Region.all.pluck(:name, :id) %>
+        <%= form_tag turbasas_path, method: :get do %>
+        <%= select_tag "region", options_for_select(regions, params[:region]), prompt: "Все регионы", onchange: "this.form.submit()", class: "form-select" %>
+      <% end %>
+    </div>
+
+    
+  </div>
+  </div>
+
 <table class="table tabel-bordered">
   <thead>
     <tr>
@@ -13,12 +30,16 @@
     </tr>
   </thead>
   <tbody>
+
+    <%
+    @turbasas = Turbasa.includes(:region).order('regions.name ASC', 'turbasas.name ASC')
+    if params[:region].present? && params[:region] != "All Regions"
+      @turbasas = @turbasas.where(regions: { id: params[:region] })
+    end
+    %>
+
     <% @turbasas.each do |turbasa| %>
       <%= render "turbasa", turbasa: turbasa %>
     <% end %>
   </tbody>
 </table>
-
-
-
-<%= link_to "New turbasa", new_turbasa_path, data: {controller: 'turbasa-modal'} %>
