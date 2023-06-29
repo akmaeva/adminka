@@ -28,9 +28,9 @@
         url: '/countrieslist', 
         dataType: 'json',
         success: function(data) {
-          $('#town_country_id').empty();
-          if ($('#town_country_id option').length === 0) {
-            $('#town_country_id').append('<option value="">Выберите страну</option>');
+          var countrySelect = $(this).val();
+          if (countrySelect > 0) {
+             $('#turbasa_country_id').append('<option value="' + country.countrySelect + '">' + country.name + '</option>');
           }
           $.each(data, function(index, country) {
             $('#town_country_id').append('<option value="' + country.id + '">' + country.name + '</option>');
