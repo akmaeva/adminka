@@ -3,7 +3,15 @@
 
 <p style="color: green"><%= notice %></p>
 
-<h1>Регионы</h1>
+<h1 style="margin-bottom: 30px;">Регионы</h1>
+
+<div class="container" style="margin-bottom: 30px;">
+  <div class="row">
+    <div class="col-sm-9">
+      <%= link_to "Добавить запись", new_region_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
 
 <table class="table tabel-bordered">
   <thead>
@@ -18,7 +26,3 @@
     <% end %>
   </tbody>
 </table>
-
-
-
-<%= link_to "Добавить регион", new_region_path %>
