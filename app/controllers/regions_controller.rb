@@ -10,6 +10,7 @@ class RegionsController < ApplicationController
     end
 
     def edit
+        @region = Region.find_by id: params[:id]
     end
 
     def show
@@ -23,8 +24,7 @@ class RegionsController < ApplicationController
                 format.html { redirect_to regions_url, notice: "Region already exists." }
                 format.json { render json: { error: "Region already exists." }, status: :unprocessable_entity }
             elsif @region.save
-                format.html { redirect_to town_url(@region), notice: "Region was successfully created." }
-                format.json { render :show, status: :created, location: @region }
+                format.html { redirect_to regions_url, notice: "Region was successfully created." }
             else
                 format.html { render :new, status: :unprocessable_entity }
                 format.json { render json: @region.errors, status: :unprocessable_entity }
@@ -34,12 +34,8 @@ class RegionsController < ApplicationController
 
     def update
         respond_to do |format|
-            if Region.exists?(name: @region.name)
-                format.html { redirect_to regions_url, notice: "Region already exists." }
-                format.json { render json: { error: "Region already exists." }, status: :unprocessable_entity }
-            elsif @region.update(region_params)
-                format.html { redirect_to region_url(@region), notice: "Region was successfully updated." }
-                format.json { render :show, status: :ok, location: @region }
+            if @region.update(region_params)
+                format.html { redirect_to regions_url, notice: "Region was successfully updated." }
             else
                 format.html { render :edit, status: :unprocessable_entity }
                 format.json { render json: @region.errors, status: :unprocessable_entity }

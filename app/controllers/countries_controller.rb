@@ -10,6 +10,7 @@ class CountriesController < ApplicationController
     end
 
     def edit
+        @country = Country.find_by id: params[:id]
     end
 
     def show
@@ -23,8 +24,7 @@ class CountriesController < ApplicationController
                 format.html { redirect_to countries_url, notice: "Country already exists." }
                 format.json { render json: { error: "Country already exists." }, status: :unprocessable_entity }
             elsif @country.save
-                format.html { redirect_to country_url(@country), notice: "Country was successfully created." }
-                format.json { render :show, status: :created, location: @country }
+                format.html { redirect_to countries_url, notice: "Country was successfully created." }
             else
                 format.html { render :new, status: :unprocessable_entity }
                 format.json { render json: @country.errors, status: :unprocessable_entity }
@@ -34,11 +34,8 @@ class CountriesController < ApplicationController
 
     def update
         respond_to do |format|
-            if Country.exists?(name: @country.name)
-                format.html { redirect_to countries_url, notice: "Country already exists." }
-                format.json { render json: { error: "Country already exists." }, status: :unprocessable_entity }
-            elsif @country.update(country_params)
-                format.html { redirect_to country_url(@country), notice: "Country was successfully updated." }
+            if @country.update(country_params)
+                format.html { redirect_to countries_url, notice: "Country was successfully updated." }
                 format.json { render :show, status: :ok, location: @country }
             else
                 format.html { render :edit, status: :unprocessable_entity }

@@ -27,6 +27,7 @@ class TurbasasController < ApplicationController
 
   # GET /turbasas/1 or /turbasas/1.json
   def show
+    @turbasa = Turbasa.find_by id: params[:id]
   end
 
   # GET /turbasas/new
@@ -36,6 +37,7 @@ class TurbasasController < ApplicationController
 
   # GET /turbasas/1/edit
   def edit
+    @turbasa = Turbasa.find_by id: params[:id]
   end
 
   # POST /turbasas or /turbasas.json
@@ -44,6 +46,7 @@ class TurbasasController < ApplicationController
 
     respond_to do |format|
       if @turbasa.save
+        format.turbo_stream { render turbo_stream: turbo_stream.append('turbasa_list', partial: 'turbasas/turbasa', locals: {turbasa: @turbasa}) }
         format.html { redirect_to turbasa_url(@turbasa), notice: "Turbasa was successfully created." }
         format.json { render :show, status: :created, location: @turbasa }
       else
