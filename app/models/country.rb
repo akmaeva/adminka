@@ -3,5 +3,5 @@ class Country < ApplicationRecord
     has_many :towns
     has_many :hostels
     
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
 end

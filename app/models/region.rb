@@ -3,6 +3,6 @@ class Region < ApplicationRecord
   has_many :towns
   has_many :hostels
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :country_id, presence: true
 end
