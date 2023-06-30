@@ -1,10 +1,50 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @turbasa %>
+<% currently_at 'Турбазы' %>
 
-<div>
-  <%= link_to "Edit this turbasa", edit_turbasa_path(@turbasa) %> |
-  <%= link_to "Back to turbasas", turbasas_path %>
+<h1 class="mb-4"><%= @turbasa.name %></h1>
 
-  <%= button_to "Destroy this turbasa", @turbasa, method: :delete %>
+<time datetime="<%= @turbasa.created_at %>">
+  <%= @turbasa.created_at %>
+</time>
+
+<p class="lead my-3">
+  <label class="form-label mb-2 mt-3">Страна:</label>
+  <%= Country.find(@turbasa.country_id).name %>
+</p>
+
+<p class="lead my-3">
+  <label class="form-label mb-2 mt-3">Регион:</label>
+  <%= Region.find(@turbasa.region_id).name %>
+</p>
+
+<p class="lead my-3">
+  <label class="form-label mb-2 mt-3">Город:</label>
+  <%= Town.find(@turbasa.town_id).name %>
+</p>
+
+<p class="lead my-3">
+  <label class="form-label mb-2 mt-3">Контакты:</label>
+  <%= @turbasa.contact %>
+</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-auto">
+      <%= link_to "Редактировать", edit_turbasa_path(@turbasa), class: "btn btn-success" %>
+    </div>
+
+    <div class="col-auto">
+      <%= button_to "Удалить", @turbasa, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+    </div>
+
+    <div class="col-auto">
+      <%= link_to "Назад", turbasas_path, class: "btn btn-outline-primary" %>
+    </div>
+  </div>
 </div>
+  
+  
+
+  
+
