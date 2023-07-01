@@ -1,0 +1,25 @@
+SELECT
+    Country.name AS Страна,
+    Region.name AS Регион,
+    Town.name AS Город,
+    COUNT(Turbasa.id) AS Количество
+FROM
+    Country
+LEFT JOIN
+    Turbasa
+ON
+    Country.id = Turbasa.country_id
+LEFT JOIN
+    Region
+ON
+    Region.id = Turbasa.region_id 
+LEFT JOIN 
+	Town
+ON
+	Town.id = Turbasa.town_id 
+GROUP BY
+    Country.name,
+    Region.name,
+    Town.name
+ORDER BY
+    Country.name;
