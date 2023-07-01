@@ -8,7 +8,7 @@
 <div class="container" style="margin-bottom: 30px;">
   <div class="row">
     <div class="col-sm-9">
-      <%= link_to "Добавить запись", new_region_path, class: "btn btn-primary" %>
+      <%= link_to "Добавить запись", new_region_path, class: "btn btn-primary", style: "border: 3px solid #4E15B2; border-radius: 13px" %>
     </div>
   </div>
 </div>
@@ -26,3 +26,15 @@
     <% end %>
   </tbody>
 </table>
+
+<head>
+  <style>
+    .btn.btn-primary:hover {
+    background-color: #4E15B2;
+    }
+
+    .btn-primary {
+      background-color: #5D19D2;
+    }
+  </style>
+</head>

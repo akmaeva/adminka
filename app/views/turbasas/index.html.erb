@@ -7,14 +7,14 @@
 
 <div class="container", style="margin-bottom: 30px;">
   <div class="row">
-    <div class="col-sm-9">
-      <%= link_to "Добавить запись", new_turbasa_path, class: "btn btn-primary" %>
+    <div class="col-sm-8">
+      <%= link_to "Добавить запись", new_turbasa_path, class: "btn btn-primary", style: "border: 3px solid #4E15B2; border-radius: 13px" %>
     </div>
 
-    <div class="col-sm">
+    <div class="col-auto">
       <% regions = Region.all.pluck(:name, :id) %>
         <%= form_tag turbasas_path, method: :get do %>
-        <%= select_tag "region", options_for_select(regions, params[:region]), prompt: "Все регионы", onchange: "this.form.submit()", class: "form-select" %>
+        <%= select_tag "region", options_for_select(regions, params[:region]), prompt: "Все регионы", onchange: "this.form.submit()", class: "rounded-select", style: "font-size: 17px;" %>
       <% end %>
     </div>
 
@@ -37,7 +37,7 @@
     <%
 
     @turbasas = Turbasa.includes(:region).order('regions.name ASC', 'turbasas.name ASC')
-    if params[:region].present? && params[:region] != "All Regions"
+    if params[:region].present? && params[:region] != "Все регионы"
       @turbasas = @turbasas.where(regions: { id: params[:region] })
     end
     %>
@@ -47,3 +47,20 @@
     <% end %>
   </tbody>
 </table>
+
+<head>
+  <style>
+    .btn.btn-primary:hover {
+    background-color: #4E15B2;
+    }
+
+    .btn-primary {
+      background-color: #5D19D2;
+    }
+
+    .rounded-select {
+      border-radius: 10px;
+      padding: 5px;
+    }
+  </style>
+</head>

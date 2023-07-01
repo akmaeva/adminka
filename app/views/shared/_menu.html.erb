@@ -3,8 +3,8 @@
         <div class="container">
             <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><%= nav_tab 'Главная', root_path, class: 'nav-link px-2', current_page: current_page %></li>
-                <li><%= nav_tab 'Турбазы', turbasas_path, class: 'nav-link px-2', current_page: current_page %></li>
+                <li><%= nav_tab '', root_path, class: "bi bi-house-door", style: "font-size: 25px;" %></li>
+                <li style="padding-left: 20px;"><%= nav_tab 'Турбазы', turbasas_path, class: 'nav-link px-2', current_page: current_page %></li>
                 <li><%= nav_tab 'Страны', countries_path, class: 'nav-link px-2', current_page: current_page %></li>
                 <li><%= nav_tab 'Регионы', regions_path, class: 'nav-link px-2', current_page: current_page %></li>
                 <li><%= nav_tab 'Города', towns_path, class: 'nav-link px-2', current_page: current_page %></li>

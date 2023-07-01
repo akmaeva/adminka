@@ -1,14 +1,14 @@
 <tr id="country_row_<%= country.id %>">
-  <td><%= country.name %></td>
+  <td class="col-sm-8"><%= country.name %></td>
   <td>
     <div class="container">
     <div class="row">
       <div class="col-auto">
-        <%= link_to "Редактировать", edit_country_path(country), class: "btn btn-success" %>
+        <%= link_to "", edit_country_path(country), class: "bi bi-pen", style: "font-size: 25px; color: black;" %>
       </div>
 
       <div class="col-auto">
-         <%= button_to "Удалить", country, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+         <%= button_to "", country, method: :delete, data: {confirm: 'Are you sure?'}, class: "bi bi-trash3", style: "font-size: 25px; color: red; background-color: transparent; border-color: transparent;" %>
       </div>
     </div>
   </div>

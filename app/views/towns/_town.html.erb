@@ -1,16 +1,16 @@
 <tr id="town_row_<%= town.id %>">
-  <td><%= town.name %></td>
-  <td><%= Country.find(town.country_id).name %></td>
-  <td><%= Region.find(town.region_id).name %></td>
+  <td class="col-sm-2"><%= town.name %></td>
+  <td class="col-sm-2"><%= Country.find(town.country_id).name %></td>
+  <td class="col-sm-4"><%= Region.find(town.region_id).name %></td>
   <td>
     <div class="container">
     <div class="row">
       <div class="col-auto">
-        <%= link_to "Редактировать", edit_town_path(town), class: "btn btn-success" %>
+        <%= link_to "", edit_town_path(town), class: "bi bi-pen", style: "font-size: 25px; color: black;" %>
       </div>
 
       <div class="col-auto">
-         <%= button_to "Удалить", town, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+         <%= button_to "", town, method: :delete, data: {confirm: 'Are you sure?'}, class: "bi bi-trash3", style: "font-size: 25px; color: red; background-color: transparent; border-color: transparent;" %>
       </div>
     </div>
   </div>

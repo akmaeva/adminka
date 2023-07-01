@@ -8,15 +8,15 @@
     <div class="container">
     <div class="row">
       <div class="col-auto">
-        <%= link_to "Просмотр", turbasa, class: "btn btn-info" %>
+        <%= link_to "", turbasa, class: "bi bi-eye-fill", style: "font-size: 25px; color: green;"  %>
       </div>
 
       <div class="col-auto">
-        <%= link_to "Редактировать", edit_turbasa_path(turbasa), class: "btn btn-success" %>
+        <%= link_to "", edit_turbasa_path(turbasa), class: "bi bi-pen", style: "font-size: 25px; color: black;" %>
       </div>
 
       <div class="col-auto">
-        <%= button_to "Удалить", turbasa, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+        <%= link_to "", turbasa, method: :delete, data: {confirm: 'Are you sure?'}, class: "bi bi-trash3", style: "font-size: 25px; color: red;" %>
       </div>
     </div>
   </div>

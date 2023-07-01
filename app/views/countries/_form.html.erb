@@ -5,19 +5,46 @@
 <%= form_with model: @country do |form| %>
 
   <div class="form-group">
-    <%= form.label "Название", class: "form-label mb-2 mt-3" %>
+    <%= form.label "Название", class: "form-label mb-2 mt-3", style: "margin-left: 15px;" %>
     <%= form.text_field :name, class: "form-control form-control-lg", style: "margin-bottom: 30px;" %>
   </div>
 
   <div class="container">
   <div class="row">
     <div class="col-auto">
-      <%= form.submit "Сохранить", class: "btn btn-primary" %>
+      <%= form.submit "Сохранить", class: "btn btn-primary", style: "border: 3px solid #4E15B2; border-radius: 13px" %>
     </div>
 
     <div class="col-auto">
-      <%= link_to "Назад", countries_path, class: "btn btn-outline-primary" %>
+      <%= link_to "Назад", countries_path, class: "btn btn-secondary", style: "border: 3px solid #7D1C32; border-radius: 13px;" %>
     </div>
   </div>
 </div>
 <% end %>
+
+<head>
+  <style>
+    .btn.btn-primary:hover {
+    background-color: #4E15B2;
+    }
+
+    .btn-primary {
+      background-color: #5D19D2;
+    }
+
+    .btn.btn-secondary:hover {
+      background-color: #7D1C32;
+    }
+
+    .btn-secondary {
+      background-color: #900E2C;
+      
+    }
+  </style>
+
+  <style>
+    .form-control-lg {
+      border-radius: 20px;
+    }
+  </style>
+</head>
